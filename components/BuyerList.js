@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-export default function BuyerList({ visible, onAddData }) {
+export default function BuyerList({ visible, onAddData, onCalledData }) {
   const [data, setData] = useState("");
 
   // elde ettiğimiz datayı props olarak üst  componente göndermek için yazdığımız fonksiyon.
@@ -21,6 +21,8 @@ export default function BuyerList({ visible, onAddData }) {
   const enteredData = (enteredText) => {
     setData(enteredText);
   };
+
+  
 
   return (
     <View>
@@ -41,7 +43,7 @@ export default function BuyerList({ visible, onAddData }) {
 
           <View style={styles.buttonContainer}>
             <View style={styles.buttons}>
-              <Button title="İptal" color="red" />
+              <Button title="İptal" color="red" onPress={onCalledData} />
             </View>
             <View style={styles.buttons}>
               <Button title="Ekle" color="blue" onPress={dataAdd} />
