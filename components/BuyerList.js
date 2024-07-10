@@ -11,18 +11,19 @@ import React, { useState } from "react";
 
 export default function BuyerList({ visible, onAddData, onCalledData }) {
   const [data, setData] = useState("");
+  
 
   // elde ettiğimiz datayı props olarak üst  componente göndermek için yazdığımız fonksiyon.
   const dataAdd = () => {
     onAddData(data);
+    // ekleye tıklandığında yeni ürün için inputu temizliyoruz.
+    setData("");
   };
 
   // girilen text metnini almak aldık ve değişkenimize atadık.
   const enteredData = (enteredText) => {
     setData(enteredText);
   };
-
-  
 
   return (
     <View>
