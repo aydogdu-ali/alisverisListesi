@@ -54,6 +54,8 @@ export default function App() {
           onCalledData={closeModal}
         />
         <View>
+
+          {/*Eklenen mazlemeyi ekrana bastırıyoruz*/}
           <FlatList
             data={foodList}
             renderItem={({ item }) => (
