@@ -7,9 +7,21 @@ import {
   TextInput,
   Button,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
-export default function BuyerList({ visible }) {
+export default function BuyerList({ visible, onAddData }) {
+  const [data, setData] = useState("");
+
+  // elde ettiğimiz datayı props olarak üst  componente göndermek için yazdığımız fonksiyon.
+  const dataAdd = () => {
+    onAddData(data);
+  };
+
+  // girilen text metnini almak aldık ve değişkenimize atadık.
+  const enteredData = (enteredText) => {
+    setData(enteredText);
+  };
+
   return (
     <View>
       <Modal animationType="slide" visible={visible}>
@@ -18,14 +30,21 @@ export default function BuyerList({ visible }) {
             style={styles.modalLogo}
             source={require("../assets/alisverislogosu.jpg")}
           />
-          <TextInput style={styles.Input} placeholder="Yeni Ürün Ekle" />
+          <TextInput
+            style={styles.Input}
+            placeholder="Yeni Ürün Ekle"
+            value={data}
+            onChangeText={enteredData}
+            //  araw şeklinde yaızılımı
+            //onChangeText={(enteredData)=>setData(enteredData)}/
+          />
 
           <View style={styles.buttonContainer}>
             <View style={styles.buttons}>
               <Button title="İptal" color="red" />
             </View>
             <View style={styles.buttons}>
-              <Button title="Ekle" color="blue" />
+              <Button title="Ekle" color="blue" onPress={dataAdd} />
             </View>
           </View>
         </View>
@@ -58,10 +77,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    marginTop:15
+    marginTop: 15,
   },
   buttons: {
-    width:80,
-    margin:5
-  }
+    width: 80,
+    margin: 5,
+  },
 });
